@@ -1,0 +1,40 @@
+package org.example;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+
+public class Solution{
+HashMap<String, String> stations=new HashMap<>();
+stations.put("Visakhapatnam","Vijayanagaram");
+stations.put("Vijayanagaram","Vijayawada");
+stations.put("Vijayawada", "Guntur");
+stations.put("Guntur", "Hyderabad");
+
+String  start=null;
+String end=null;
+
+Optional<Map.Entry<String,String> 
+startElement=stations.entrySet().stream()
+.filter(e->! stations.values().contains(e.getKey())).findFirst();
+
+
+Optional<Map.Entry<String,String> 
+endElement=stations.entrySet().stream()
+.filter(e->! stations.keySet().contains(e.getValue())).findFirst();
+
+if(startElement.isPresent()){
+start=startElement.get().getKey();
+}
+if(endElement.isPresent()){
+end=endElement.get().getValue();
+}
+System.out.println(start);
+
+while(start!=end){
+System.out.println(stations.get(start));
+start=stations.get(start);
+
+}
+
+}}
+
